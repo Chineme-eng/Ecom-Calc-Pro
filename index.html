@@ -1,1 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ecom Profit Engine — Pro</title>
+<link rel="icon" type="image/png" href="KP.png">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#faf7f2;
+  --bg2:#f3efe8;
+  --bg3:#ede8df;
+  --surface:#ffffff;
+  --border:#ddd8ce;
+  --border2:#c8c2b6;
+  --text:#1a1612;
+  --muted:#7a7268;
+  --faint:#b8b2a8;
+  --accent:#b85c2a;
+  --accent2:#9a4a20;
+  --accent-bg:#fdf0e8;
+  --green:#2e7d52;
+  --green-bg:#eaf4ee;
+  --red:#b83232;
+  --red-bg:#fdeaea;
+  --amber:#a06010;
+  --amber-bg:#fef6e4;
+  --blue:#395f8a;
+  --blue-bg:#eaf0f7;
+  --serif:'EB Garamond', Georgia, serif;
+  --mono:'IBM Plex Mono', monospace;
+  --r:8px;
+  --r2:12px;
+  --r3:18px;
+  --shadow:0 1px 4px rgba(26,22,18,.07);
+  --shadow2:0 2px 12px rgba(26,22,18,.10);
+}
+html[data-theme='dark']{
+  --bg:#15110e;
+  --bg2:#1d1713;
+  --bg3:#261f19;
+  --surface:#1b1612;
+  --border:#3a2f27;
+  --border2:#564538;
+  --text:#f7efe4;
+  --muted:#c2b3a3;
+  --faint:#8c7a69;
+  --accent:#d8783f;
+  --accent2:#e78a53;
+  --accent-bg:#2a1d16;
+  --green:#7fd7a2;
+  --green-bg:#15251b;
+  --red:#ff8d8d;
+  --red-bg:#2a1818;
+  --amber:#f0bd69;
+  --amber-bg:#2a2113;
+  --blue:#8fb6e6;
+  --blue-bg:#172330;
+  --shadow:0 1px 4px rgba(0,0,0,.28);
+  --shadow2:0 8px 28px rgba(0,0,0,.34);
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--serif);
+  font-size:16px;
+  line-height:1.7;
+  min-height:100vh;
+  transition:background-color .25s ease,color .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+html,body{overflow-x:hidden}
+nav{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);
+  padding:.65rem 1.1rem;
+}
+.nav-inner{
+  max-width:1180px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+}
+.nav-brand{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.08em;
+  color:var(--muted);
+  text-decoration:none;
+  white-space:nowrap;
+}
+.nav-brand span{color:var(--accent)}
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:.7rem 1rem;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.nav-link,.nav-action{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.06em;
+  color:var(--muted);
+  text-decoration:none;
+  white-space:nowrap;
+}
+.nav-link:hover,.nav-action:hover{color:var(--accent)}
+.nav-action{
+  border:1px solid var(--border2);
+  border-radius:999px;
+  padding:7px 11px;
+  background:var(--surface);
+  cursor:pointer;
+}
+.nav-action.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.nav-action.primary:hover{background:var(--accent2);color:#fff}
+.wrap{
+  max-width:1180px;
+  margin:0 auto;
+  padding:2.5rem 1.25rem 5rem;
+}
+.hero{
+  text-align:center;
+  max-width:800px;
+  margin:0 auto 2.75rem;
+  padding-bottom:2.5rem;
+  border-bottom:1px solid var(--border);
+}
+.hero-eyebrow{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:1rem;
+}
+h1{
+  font-family:var(--serif);
+  font-size:clamp(38px,6vw,66px);
+  line-height:1.02;
+  font-weight:400;
+  margin-bottom:1rem;
+}
+h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{
+  max-width:660px;
+  margin:0 auto 1.6rem;
+  font-size:18px;
+  color:var(--muted);
+}
+.rev-bar{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  padding:1.15rem 1.35rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r2);
+  box-shadow:var(--shadow);
+}
+.rev-label{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.rev-input-wrap{
+  display:flex;
+  align-items:center;
+  background:var(--bg2);
+  border:1px solid var(--border2);
+  border-radius:var(--r);
+  overflow:hidden;
+}
+.rev-prefix{
+  font-family:var(--mono);
+  font-size:20px;
+  padding:8px 12px;
+  color:var(--muted);
+  border-right:1px solid var(--border);
+  background:var(--bg3);
+}
+#revenueInput{
+  background:transparent;
+  border:none;
+  outline:none;
+  font-family:var(--mono);
+  font-size:20px;
+  font-weight:500;
+  color:var(--text);
+  padding:8px 12px;
+  width:180px;
+  text-align:right;
+}
+.section{margin-top:3rem}
+.section-head{
+  margin-bottom:1rem;
+  padding-bottom:.75rem;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+.section-title{font-size:26px;font-weight:400}
+.section-sub{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.preset-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem}
+.preset-btn{
+  padding:7px 12px;
+  border-radius:999px;
+  border:1px solid var(--border2);
+  background:transparent;
+  color:var(--muted);
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.04em;
+  cursor:pointer;
+}
+.preset-btn:hover,.preset-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.input-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:start}
+@media(max-width:980px){.input-grid{grid-template-columns:1fr}}
+.stack{display:flex;flex-direction:column;gap:16px}
+.panel{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r2);
+  padding:20px 22px;
+  box-shadow:var(--shadow);
+}
+.panel-tight{padding:16px 18px}
+.panel-label{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:14px;
+}
+.panel-copy{font-size:15px;color:var(--muted);margin-top:-4px;margin-bottom:14px}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.form-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:760px){.form-grid,.form-grid.three{grid-template-columns:1fr}}
+.field{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  padding:10px 12px;
+}
+.field label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.field small{display:block;font-size:12px;color:var(--muted);margin-top:5px;line-height:1.45}
+.field-input-wrap{display:flex;align-items:center;gap:8px}
+.field-input-wrap span{font-family:var(--mono);color:var(--muted);flex:0 0 auto}
+.field input,.field select{
+  width:100%;min-width:0;border:none;outline:none;background:transparent;
+  font-family:var(--mono);font-size:16px;color:var(--text);
+}
+.slider-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media(max-width:900px){.slider-grid{grid-template-columns:1fr}}
+.slider-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:12px}
+.slider-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.slider-top strong{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.slider-top span{font-family:var(--mono);font-size:12px;color:var(--text)}
+.slider-card input[type="range"]{width:100%}
+.results-shell{display:grid;grid-template-columns:1fr .92fr;gap:20px;align-items:start}
+@media(max-width:980px){.results-shell{grid-template-columns:1fr}}
+.results{display:flex;flex-direction:column;gap:14px}
+.big-profit{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:22px 24px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.big-profit::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px}
+.big-profit.good::before{background:var(--green)}
+.big-profit.warn::before{background:var(--amber)}
+.big-profit.bad::before{background:var(--red)}
+.bp-label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.bp-val{font-size:54px;line-height:1;letter-spacing:-.02em;overflow-wrap:anywhere}
+.bp-sub{font-family:var(--mono);font-size:12px;margin-top:8px;color:var(--muted);overflow-wrap:anywhere}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:580px){.stat-grid{grid-template-columns:1fr}}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;box-shadow:var(--shadow)}
+.stat-l{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.stat-v{font-family:var(--mono);font-size:21px;font-weight:500;overflow-wrap:anywhere}
+.stat-s{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:3px}
+.callout{border-radius:var(--r);padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:1.8;border-left:3px solid}
+.callout.good{background:var(--green-bg);border-color:var(--green);color:var(--green)}
+.callout.warn{background:var(--amber-bg);border-color:var(--amber);color:var(--amber)}
+.callout.bad{background:var(--red-bg);border-color:var(--red);color:var(--red)}
+.mini-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.mini-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:860px){.mini-grid,.mini-grid.three{grid-template-columns:1fr}}
+.mini-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
+.mini-k{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.mini-v{font-size:28px;line-height:1.1;overflow-wrap:anywhere}
+.mini-note{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.5}
+.bar-wrap{display:flex;flex-direction:column;gap:12px}
+.bar-row{display:grid;grid-template-columns:120px 1fr 72px;gap:10px;align-items:center}
+@media(max-width:640px){.bar-row{grid-template-columns:1fr}}
+.bar-name{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.bar-track{height:12px;background:var(--bg2);border-radius:999px;overflow:hidden;border:1px solid var(--border)}
+.bar-fill{height:100%;border-radius:999px}
+.bar-val{font-family:var(--mono);font-size:12px;text-align:right}
+.action-row{display:flex;flex-wrap:wrap;gap:10px}
+.btn,.btn-ghost{border-radius:999px;padding:10px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;cursor:pointer}
+.btn{background:var(--accent);color:#fff;border:none}
+.btn:hover{background:var(--accent2)}
+.btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem}
+.tab-btn{padding:8px 12px;border-radius:999px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-family:var(--mono);font-size:11px;cursor:pointer}
+.tab-btn.active,.tab-btn:hover{background:var(--surface);border-color:var(--accent);color:var(--accent)}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.dual-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:980px){.dual-grid{grid-template-columns:1fr}}
+.summary-box{white-space:pre-wrap;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px;font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--text)}
+.verdict-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:18px 20px;box-shadow:var(--shadow)}
+.verdict-title{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.verdict-body{font-size:16px;line-height:1.65;color:var(--text)}
+.warning-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.warn-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;border:1px solid var(--border)}
+.warn-badge.good{background:var(--green-bg);color:var(--green);border-color:var(--green)}
+.warn-badge.warn{background:var(--amber-bg);color:var(--amber);border-color:var(--amber)}
+.warn-badge.bad{background:var(--red-bg);color:var(--red);border-color:var(--red)}
+.warn-badge.neutral{background:var(--bg2);color:var(--muted);border-color:var(--border2)}
+.teaser-box{margin-top:1rem;padding:18px;background:linear-gradient(180deg,var(--surface),var(--bg2));border:1px solid var(--border);border-radius:var(--r)}
+.teaser-box h3{font-size:22px;font-weight:400;margin-bottom:6px}
+.teaser-box p{color:var(--muted);margin-bottom:12px;line-height:1.7}
+.footer-cta{margin-top:1rem;padding:18px;background:var(--accent-bg);border:1px solid var(--border);border-radius:var(--r)}
+.footer-cta h3{font-size:22px;font-weight:400;margin-bottom:6px}
+.footer-cta p{color:var(--muted);margin-bottom:12px}
+footer{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:2;letter-spacing:.04em}
+.good-col{color:var(--green)} .warn-col{color:var(--amber)} .bad-col{color:var(--red)} .blue-col{color:var(--blue)}
+@media(max-width:720px){
+  .nav-inner{align-items:flex-start;flex-direction:column}
+  .nav-right{width:100%}
+  .wrap{padding:2rem 1rem 4rem}
+  .bp-val{font-size:42px}
+}
 
+.saved-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+@media(max-width:760px){.saved-list{grid-template-columns:1fr}}
+.saved-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:12px}
+.saved-title{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.saved-meta{font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--text);white-space:pre-wrap}
+.saved-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.tool-kpi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media(max-width:980px){.tool-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:580px){.tool-kpi-grid{grid-template-columns:1fr}}
+.inline-note{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:10px}
+
+
+html[data-theme='dark'] .nav-action,
+html[data-theme='dark'] .btn-ghost,
+html[data-theme='dark'] .tab-btn,
+html[data-theme='dark'] .preset-btn{background:var(--surface)}
+html[data-theme='dark'] .nav-action.primary,
+html[data-theme='dark'] .btn{color:#fff}
+html[data-theme='dark'] .rev-prefix{background:var(--bg3)}
+html[data-theme='dark'] input,
+html[data-theme='dark'] select{color:var(--text)}
+html[data-theme='dark'] .bar-track{background:var(--bg3)}
+html[data-theme='dark'] .summary-box{background:var(--bg2)}
+.theme-toggle{min-width:78px;text-align:center}
+
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top"><span>Kat</span>Tools</a>
+    <div class="nav-right">
+      <a class="nav-link" href="#inputs">Calculator</a>
+      <a class="nav-link" href="#scenarios">Scenarios</a>
+      <a class="nav-link" href="#scale">Scale</a>
+      <a class="nav-link" href="#advanced">Toolkit</a>
+      <button class="nav-action theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode">Dark mode</button>
+      <button class="nav-action" onclick="saveScenario()">Save</button>
+      <button class="nav-action primary" onclick="copySummary()">Copy</button>
+    </div>
+  </div>
+</nav>
+<div class="wrap" id="top">
+  <header class="hero">
+    <div class="hero-eyebrow">Real profit after ads, fees, shipping, and returns</div>
+    <h1>The Pro <em>Ecom</em><br/>Profit Engine</h1>
+    <p class="hero-sub">Built for Shopify brands, dropshippers, TikTok Shop sellers, Amazon operators, and ecommerce founders who want a cleaner answer: what you actually keep, what breaks first, and what to fix before you scale.</p>
+    <div class="rev-bar">
+      <span class="rev-label">Monthly revenue target</span>
+      <div class="rev-input-wrap">
+        <span class="rev-prefix">$</span>
+        <input id="revenueInput" type="text" value="50,000" oninput="onRevenueInput(this)" onblur="formatRevenueInput(this)" />
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="inputs">
+    <div class="section-head">
+      <span class="section-title">Calculator setup</span>
+      <span class="section-sub">inputs first, outputs second</span>
+    </div>
+    <div class="preset-row" id="presetRow"></div>
+
+    <div class="input-grid">
+      <div class="stack">
+        <div class="panel">
+          <div class="panel-label">Core unit economics</div>
+          <p class="panel-copy">Set the numbers for one average sale. This is the base layer everything else uses.</p>
+          <div class="form-grid">
+            <div class="field"><label for="price">Selling price</label><div class="field-input-wrap"><span>$</span><input id="price" type="number" min="0" step="0.01" value="50" /></div></div>
+            <div class="field"><label for="cogs">Product cost (COGS)</label><div class="field-input-wrap"><span>$</span><input id="cogs" type="number" min="0" step="0.01" value="15" /></div></div>
+            <div class="field"><label for="shipping">Shipping / fulfillment</label><div class="field-input-wrap"><span>$</span><input id="shipping" type="number" min="0" step="0.01" value="5" /></div></div>
+            <div class="field"><label for="adCost">Ad cost per sale (CPA)</label><div class="field-input-wrap"><span>$</span><input id="adCost" type="number" min="0" step="0.01" value="20" /></div></div>
+            <div class="field"><label for="platformFee">Platform + payment fees</label><div class="field-input-wrap"><input id="platformFee" type="number" min="0" step="0.01" value="3" /><span>%</span></div></div>
+            <div class="field"><label for="returnRate">Return / refund rate</label><div class="field-input-wrap"><input id="returnRate" type="number" min="0" step="0.01" value="5" /><span>%</span></div></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-label">Variable extras</div>
+          <p class="panel-copy">These small costs look harmless, but together they quietly drag your margin down.</p>
+          <div class="form-grid three">
+            <div class="field"><label for="packaging">Packaging / inserts</label><div class="field-input-wrap"><span>$</span><input id="packaging" type="number" min="0" step="0.01" value="1.5" /></div></div>
+            <div class="field"><label for="miscVar">Other variable cost</label><div class="field-input-wrap"><span>$</span><input id="miscVar" type="number" min="0" step="0.01" value="1" /></div></div>
+            <div class="field"><label for="repeatRate">Repeat purchase rate</label><div class="field-input-wrap"><input id="repeatRate" type="number" min="0" step="1" value="15" /><span>%</span></div><small>Useful for brands with returning customers.</small></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-label">What-if controls</div>
+          <p class="panel-copy">See how much your profit changes when you improve the levers that matter most.</p>
+          <div class="slider-grid">
+            <div class="slider-card"><div class="slider-top"><strong>Price lift</strong><span id="priceLiftVal">+10%</span></div><input id="priceLift" type="range" min="0" max="50" step="1" value="10" /></div>
+            <div class="slider-card"><div class="slider-top"><strong>Ad cut</strong><span id="adCutVal">-10%</span></div><input id="adCut" type="range" min="0" max="50" step="1" value="10" /></div>
+            <div class="slider-card"><div class="slider-top"><strong>Return cut</strong><span id="returnCutVal">-2%</span></div><input id="returnCut" type="range" min="0" max="15" step="0.5" value="2" /></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div class="big-profit good" id="bigProfit">
+          <div class="bp-label">Profit per order</div>
+          <div class="bp-val" id="profitPerOrder">$0</div>
+          <div class="bp-sub" id="profitSub">—</div>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat"><div class="stat-l">Net margin</div><div class="stat-v" id="netMargin">—</div><div class="stat-s" id="marginGrade">—</div></div>
+          <div class="stat"><div class="stat-l">Break-even ROAS</div><div class="stat-v" id="breakEvenRoas">—</div><div class="stat-s">minimum return on ad spend</div></div>
+          <div class="stat"><div class="stat-l">Max CPA</div><div class="stat-v" id="maxCpa">—</div><div class="stat-s">highest ad cost before profit hits zero</div></div>
+          <div class="stat"><div class="stat-l">Contribution margin</div><div class="stat-v" id="contributionMargin">—</div><div class="stat-s">what remains before ads</div></div>
+        </div>
+
+        <div class="callout warn" id="profitLeakBox">Analyzing your biggest profit leak...</div>
+
+        <div class="verdict-card">
+          <div class="verdict-title">Verdict</div>
+          <div class="verdict-body" id="verdictBody">—</div>
+          <div class="warning-row" id="warningBadges"></div>
+        </div>
+
+        <div class="panel panel-tight">
+          <div class="panel-label">Recommended next move</div>
+          <div class="summary-box" id="quickFixBox">—</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="scenarios">
+    <div class="section-head">
+      <span class="section-title">Scenario explorer</span>
+      <span class="section-sub">offer moves, ad planning, and break-even thinking</span>
+    </div>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="impact">Raise price impact</button>
+      <button class="tab-btn" data-tab="offers">Offer strategy</button>
+      <button class="tab-btn" data-tab="ads">Ads + returns</button>
+      <button class="tab-btn" data-tab="pricing">Pricing ladder</button>
+    </div>
+
+    <div class="tab-pane active" id="tab-impact">
+      <div class="mini-grid three">
+        <div class="mini-card"><div class="mini-k">New selling price</div><div class="mini-v" id="impactPrice">—</div><div class="mini-note">using your price lift slider</div></div>
+        <div class="mini-card"><div class="mini-k">New profit / order</div><div class="mini-v" id="impactProfit">—</div><div class="mini-note">after simulated changes</div></div>
+        <div class="mini-card"><div class="mini-k">New margin</div><div class="mini-v" id="impactMargin">—</div><div class="mini-note">with lower CPA + fewer returns</div></div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="tab-offers">
+      <div class="dual-grid">
+        <div class="panel">
+          <div class="panel-label">Discount impact</div>
+          <p class="panel-copy">Test what happens when you offer a discount to increase conversion.</p>
+          <div class="form-grid">
+            <div class="field"><label for="discountPct">Discount</label><div class="field-input-wrap"><input id="discountPct" type="number" min="0" step="1" value="10"><span>%</span></div></div>
+            <div class="field"><label for="bundleUnits">Bundle units sold</label><div class="field-input-wrap"><input id="bundleUnits" type="number" min="1" step="1" value="2"><span>x</span></div></div>
+          </div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini-card"><div class="mini-k">Discounted profit / order</div><div class="mini-v" id="discountProfit">—</div><div class="mini-note">profit after your discount</div></div>
+          <div class="mini-card"><div class="mini-k">Bundle profit</div><div class="mini-v" id="bundleProfit">—</div><div class="mini-note">profit if customer buys multiple units</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="tab-ads">
+      <div class="dual-grid">
+        <div class="panel">
+          <div class="panel-label">Traffic planner</div>
+          <p class="panel-copy">Translate your unit economics into ad and order decisions.</p>
+          <div class="form-grid">
+            <div class="field"><label for="clicks">Monthly ad clicks</label><div class="field-input-wrap"><input id="clicks" type="number" min="0" step="100" value="10000"></div></div>
+            <div class="field"><label for="convRate">Conversion rate</label><div class="field-input-wrap"><input id="convRate" type="number" min="0" step="0.1" value="2.5"><span>%</span></div></div>
+          </div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini-card"><div class="mini-k">Expected monthly orders</div><div class="mini-v" id="expectedOrders">—</div><div class="mini-note">based on clicks × conversion rate</div></div>
+          <div class="mini-card"><div class="mini-k">Profit from those orders</div><div class="mini-v" id="expectedProfit">—</div><div class="mini-note">before fixed overhead</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="tab-pricing">
+      <div class="dual-grid">
+        <div class="panel">
+          <div class="panel-label">Pricing ladder</div>
+          <p class="panel-copy">Model what happens when you add an order bump or move toward a premium bundle instead of relying on one flat AOV.</p>
+          <div class="form-grid three">
+            <div class="field"><label for="upsellTakeRate">Upsell take rate</label><div class="field-input-wrap"><input id="upsellTakeRate" type="number" min="0" step="1" value="18"><span>%</span></div></div>
+            <div class="field"><label for="upsellValue">Upsell value</label><div class="field-input-wrap"><span>$</span><input id="upsellValue" type="number" min="0" step="0.01" value="12"></div></div>
+            <div class="field"><label for="upsellCost">Upsell cost</label><div class="field-input-wrap"><span>$</span><input id="upsellCost" type="number" min="0" step="0.01" value="4"></div></div>
+          </div>
+        </div>
+        <div class="mini-grid three">
+          <div class="mini-card"><div class="mini-k">Extra profit / order</div><div class="mini-v" id="upsellProfitPerOrder">—</div><div class="mini-note">blended across all orders</div></div>
+          <div class="mini-card"><div class="mini-k">Blended AOV</div><div class="mini-v" id="blendedAov">—</div><div class="mini-note">base order + expected upsell lift</div></div>
+          <div class="mini-card"><div class="mini-k">Blended margin</div><div class="mini-v" id="blendedMargin">—</div><div class="mini-note">with your upsell layer added</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="scale">
+    <div class="section-head">
+      <span class="section-title">Profit at scale</span>
+      <span class="section-sub">what it looks like across order volume</span>
+    </div>
+    <div class="mini-grid three" id="scaleGrid"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <span class="section-title">Cost leakage map</span>
+      <span class="section-sub">attack the tallest bar first</span>
+    </div>
+    <div class="panel">
+      <div class="bar-wrap" id="costBars"></div>
+    </div>
+  </section>
+
+  <section class="section" id="advanced">
+    <div class="section-head">
+      <span class="section-title">Operator toolkit</span>
+      <span class="section-sub">decision tools that make this feel pro</span>
+    </div>
+    <div class="tool-kpi-grid">
+      <div class="mini-card"><div class="mini-k">Orders needed for $10k profit</div><div class="mini-v" id="ordersFor10k">—</div><div class="mini-note">based on current profit per order</div></div>
+      <div class="mini-card"><div class="mini-k">Monthly profit at target revenue</div><div class="mini-v" id="monthlyProfitTarget">—</div><div class="mini-note">using your revenue target above</div></div>
+      <div class="mini-card"><div class="mini-k">Break-even revenue target</div><div class="mini-v" id="breakEvenRevenue">—</div><div class="mini-note">minimum revenue to cover fixed overhead</div></div>
+      <div class="mini-card"><div class="mini-k">Profit lost to returns</div><div class="mini-v" id="returnsLoss">—</div><div class="mini-note">per order at current return rate</div></div>
+      <div class="mini-card"><div class="mini-k">Estimated customer LTV</div><div class="mini-v" id="ltvVal">—</div><div class="mini-note">using repeat purchase rate</div></div>
+      <div class="mini-card"><div class="mini-k">AOV after 2-unit bundle</div><div class="mini-v" id="bundleAov">—</div><div class="mini-note">simple bundle simulation</div></div>
+      <div class="mini-card"><div class="mini-k">Confidence meter</div><div class="mini-v" id="confidenceVal">—</div><div class="mini-note" id="confidenceNote">—</div></div>
+      <div class="mini-card"><div class="mini-k">Target CPA for 20% margin</div><div class="mini-v" id="targetCpa20">—</div><div class="mini-note">how much room you have if you want safer scale</div></div>
+    </div>
+
+    <div class="dual-grid" style="margin-top:1rem">
+      <div class="panel">
+        <div class="panel-label">Scale planner</div>
+        <p class="panel-copy">Use a simple fixed-overhead layer so you can see what revenue actually needs to look like once software, apps, freelancers, and ops are included.</p>
+        <div class="form-grid three">
+          <div class="field"><label for="fixedOverhead">Monthly fixed overhead</label><div class="field-input-wrap"><span>$</span><input id="fixedOverhead" type="number" min="0" step="50" value="2500"></div></div>
+          <div class="field"><label for="targetNetProfit">Target net profit</label><div class="field-input-wrap"><span>$</span><input id="targetNetProfit" type="number" min="0" step="500" value="10000"></div></div>
+          <div class="field"><label for="inventoryBuffer">Inventory buffer</label><div class="field-input-wrap"><input id="inventoryBuffer" type="number" min="0" step="1" value="12"><span>%</span></div><small>extra cash cushion for stock and volatility</small></div>
+        </div>
+        <div class="inline-note" id="scalePlannerNote">—</div>
+      </div>
+      <div class="mini-grid three">
+        <div class="mini-card"><div class="mini-k">Orders for target net profit</div><div class="mini-v" id="ordersForTargetNet">—</div><div class="mini-note">after covering fixed overhead</div></div>
+        <div class="mini-card"><div class="mini-k">Revenue needed incl. overhead</div><div class="mini-v" id="revenueForTargetNet">—</div><div class="mini-note">what the top line must support</div></div>
+        <div class="mini-card"><div class="mini-k">Cash buffer target</div><div class="mini-v" id="cashBufferTarget">—</div><div class="mini-note">based on overhead + inventory buffer</div></div>
+      </div>
+    </div>
+
+    <div class="dual-grid" style="margin-top:1rem">
+      <div class="panel">
+        <div class="panel-label">Channel mix planner</div>
+        <p class="panel-copy">Estimate what happens when the same offer is sold through paid social, marketplace, email / SMS, and organic creator traffic with different CPA pressure.</p>
+        <div class="form-grid three">
+          <div class="field"><label for="paidShare">Paid social share</label><div class="field-input-wrap"><input id="paidShare" type="number" min="0" max="100" step="1" value="45"><span>%</span></div></div>
+          <div class="field"><label for="marketplaceShare">Marketplace share</label><div class="field-input-wrap"><input id="marketplaceShare" type="number" min="0" max="100" step="1" value="20"><span>%</span></div></div>
+          <div class="field"><label for="ownedShare">Email / SMS share</label><div class="field-input-wrap"><input id="ownedShare" type="number" min="0" max="100" step="1" value="20"><span>%</span></div></div>
+          <div class="field"><label for="organicShare">Organic creator share</label><div class="field-input-wrap"><input id="organicShare" type="number" min="0" max="100" step="1" value="15"><span>%</span></div></div>
+          <div class="field"><label for="marketplaceFeeExtra">Extra marketplace fee</label><div class="field-input-wrap"><input id="marketplaceFeeExtra" type="number" min="0" step="0.1" value="7"><span>%</span></div></div>
+          <div class="field"><label for="ownedChannelCpa">Owned channel CPA</label><div class="field-input-wrap"><span>$</span><input id="ownedChannelCpa" type="number" min="0" step="0.01" value="4"></div></div>
+        </div>
+      </div>
+      <div class="mini-grid three">
+        <div class="mini-card"><div class="mini-k">Blended channel CPA</div><div class="mini-v" id="blendedChannelCpa">—</div><div class="mini-note">weighted across all channels</div></div>
+        <div class="mini-card"><div class="mini-k">Blended channel margin</div><div class="mini-v" id="blendedChannelMargin">—</div><div class="mini-note">after channel mix pressure</div></div>
+        <div class="mini-card"><div class="mini-k">Channel health</div><div class="mini-v" id="channelHealth">—</div><div class="mini-note" id="channelHealthNote">—</div></div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:1rem">
+      <div class="panel-label">Scenario vault</div>
+      <div class="action-row">
+        <button class="btn-ghost" onclick="saveScenario()">Save scenario</button>
+        <button class="btn-ghost" onclick="loadScenario()">Load latest</button>
+        <button class="btn-ghost" onclick="copySummary()">Copy summary</button>
+        <button class="btn-ghost" onclick="clearSavedScenarios()">Clear saved</button>
+      </div>
+      <div class="summary-box" id="summaryPreview" style="margin-top:14px">—</div>
+      <div class="saved-list" id="savedScenarioList"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Ecom Profit Engine Pro · Built for planning smarter, pricing better, and protecting your margins.</div>
+    <div style="margin-top:.4rem">Built in the same premium style as KatTools calculators · Revenue ≠ Profit</div>
+  </footer>
+</div>
+
+<script>
+const PRESETS = {
+  dropshipping: { label: 'Dropshipping', price: 50, cogs: 15, shipping: 5, adCost: 20, platformFee: 3, returnRate: 5, packaging: 1.5, miscVar: 1, repeatRate: 8 },
+  shopify: { label: 'Shopify Brand', price: 65, cogs: 18, shipping: 6, adCost: 16, platformFee: 3, returnRate: 4, packaging: 2, miscVar: 1.5, repeatRate: 20 },
+  tiktok: { label: 'TikTok Shop', price: 35, cogs: 10, shipping: 4, adCost: 11, platformFee: 6, returnRate: 6, packaging: 1, miscVar: .75, repeatRate: 10 },
+  amazon: { label: 'Amazon FBA', price: 42, cogs: 12, shipping: 0, adCost: 7, platformFee: 15, returnRate: 4, packaging: .5, miscVar: 1.25, repeatRate: 8 },
+  pod: { label: 'Print on Demand', price: 36, cogs: 14, shipping: 5, adCost: 9, platformFee: 3, returnRate: 2, packaging: .25, miscVar: .5, repeatRate: 6 },
+  subscription: { label: 'Subscription Box', price: 55, cogs: 17, shipping: 8, adCost: 14, platformFee: 3, returnRate: 3, packaging: 2.5, miscVar: 1.5, repeatRate: 35 },
+  marketplace: { label: 'Marketplace Seller', price: 30, cogs: 9, shipping: 4, adCost: 6, platformFee: 12, returnRate: 5, packaging: .75, miscVar: .75, repeatRate: 10 },
+  wholesale: { label: 'Wholesale / B2B', price: 24, cogs: 11, shipping: 2.5, adCost: 2, platformFee: 1, returnRate: 1, packaging: .4, miscVar: .6, repeatRate: 40 },
+  creator: { label: 'Creator-Led Brand', price: 48, cogs: 14, shipping: 5, adCost: 8, platformFee: 3, returnRate: 3, packaging: 1.25, miscVar: .9, repeatRate: 18 },
+  premium: { label: 'Premium DTC', price: 95, cogs: 24, shipping: 7, adCost: 22, platformFee: 3, returnRate: 4, packaging: 3, miscVar: 1.75, repeatRate: 26 }
+};
+const SAVE_KEY = 'kat-ecom-profit-scenario-v3';
+const SAVE_LIST_KEY = 'kat-ecom-profit-scenarios-list-v1';
+const THEME_KEY = 'kat-ecom-profit-theme';
+let currentPreset = 'dropshipping';
+function applyTheme(theme){
+  const root = document.documentElement;
+  const next = theme === 'dark' ? 'dark' : 'light';
+  root.setAttribute('data-theme', next);
+  const btn = document.getElementById('themeToggle');
+  if(btn) btn.textContent = next === 'dark' ? 'Light mode' : 'Dark mode';
+  localStorage.setItem(THEME_KEY, next);
+}
+function toggleTheme(){
+  const active = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  applyTheme(active === 'dark' ? 'light' : 'dark');
+}
+function initTheme(){
+  const saved = localStorage.getItem(THEME_KEY);
+  applyTheme(saved || 'light');
+}
+const el = id => document.getElementById(id);
+function fmtMoney(n){ if(!isFinite(n)) return '—'; return '$' + Number(n).toLocaleString(undefined,{maximumFractionDigits:2}); }
+function fmtPct(n){ if(!isFinite(n)) return '—'; return n.toFixed(1) + '%'; }
+function fmtNum(n){ if(!isFinite(n)) return '—'; return Number(n).toLocaleString(undefined,{maximumFractionDigits:2}); }
+function parseVal(id){ return parseFloat(el(id).value) || 0; }
+function onRevenueInput(input){ const raw = input.value.replace(/[^0-9]/g,''); input.value = raw ? Number(raw).toLocaleString() : ''; update(); }
+function formatRevenueInput(input){ const raw = input.value.replace(/[^0-9]/g,''); input.value = raw ? Number(raw).toLocaleString() : '0'; }
+function gradeMargin(m){ if(m >= 30) return {label:'Healthy margin', cls:'good-col', box:'good'}; if(m >= 15) return {label:'Risky / thin margin', cls:'warn-col', box:'warn'}; return {label:'Dangerously low margin', cls:'bad-col', box:'bad'}; }
+function renderPresets(){
+  el('presetRow').innerHTML = Object.entries(PRESETS).map(([key,p]) => `<button class="preset-btn${key===currentPreset?' active':''}" onclick="applyPreset('${key}')">${p.label}</button>`).join('');
+}
+function applyPreset(key){
+  currentPreset = key;
+  const p = PRESETS[key];
+  ['price','cogs','shipping','adCost','platformFee','returnRate','packaging','miscVar','repeatRate'].forEach(k => { if(el(k)) el(k).value = p[k]; });
+  renderPresets();
+  update();
+}
+function resetCurrentPreset(){ applyPreset(currentPreset); }
+function getRevenueTarget(){ return parseFloat((el('revenueInput').value || '0').replace(/,/g,'')) || 0; }
+function getScenario(){
+  return {
+    currentPreset,
+    revenueInput: el('revenueInput').value,
+    price: el('price').value,
+    cogs: el('cogs').value,
+    shipping: el('shipping').value,
+    adCost: el('adCost').value,
+    platformFee: el('platformFee').value,
+    returnRate: el('returnRate').value,
+    packaging: el('packaging').value,
+    miscVar: el('miscVar').value,
+    repeatRate: el('repeatRate').value,
+    priceLift: el('priceLift').value,
+    adCut: el('adCut').value,
+    returnCut: el('returnCut').value,
+    discountPct: el('discountPct').value,
+    bundleUnits: el('bundleUnits').value,
+    clicks: el('clicks').value,
+    convRate: el('convRate').value,
+    upsellTakeRate: el('upsellTakeRate').value,
+    upsellValue: el('upsellValue').value,
+    upsellCost: el('upsellCost').value,
+    fixedOverhead: el('fixedOverhead').value,
+    targetNetProfit: el('targetNetProfit').value,
+    inventoryBuffer: el('inventoryBuffer').value,
+    paidShare: el('paidShare').value,
+    marketplaceShare: el('marketplaceShare').value,
+    ownedShare: el('ownedShare').value,
+    organicShare: el('organicShare').value,
+    marketplaceFeeExtra: el('marketplaceFeeExtra').value,
+    ownedChannelCpa: el('ownedChannelCpa').value
+  };
+}
+function applyScenario(s){
+  if(!s) return;
+  currentPreset = s.currentPreset || currentPreset;
+  Object.keys(s).forEach(k => { if(el(k)) el(k).value = s[k]; });
+  renderPresets();
+  update();
+}
+function saveScenario(){
+  const scenario = getScenario();
+  localStorage.setItem(SAVE_KEY, JSON.stringify(scenario));
+  const list = JSON.parse(localStorage.getItem(SAVE_LIST_KEY) || '[]');
+  const snapshot = {
+    id: Date.now(),
+    name: `${PRESETS[currentPreset].label} · ${new Date().toLocaleDateString()}`,
+    profitPerOrder: el('profitPerOrder').textContent,
+    netMargin: el('netMargin').textContent,
+    scenario
+  };
+  list.unshift(snapshot);
+  localStorage.setItem(SAVE_LIST_KEY, JSON.stringify(list.slice(0,6)));
+  renderSavedScenarios();
+  const prev = buildSummaryText();
+  el('summaryPreview').textContent = 'Scenario saved to this browser.\n\n' + prev;
+}
+function loadScenario(){
+  const raw = localStorage.getItem(SAVE_KEY);
+  if(!raw) return;
+  applyScenario(JSON.parse(raw));
+}
+function loadScenarioById(id){
+  const list = JSON.parse(localStorage.getItem(SAVE_LIST_KEY) || '[]');
+  const found = list.find(x => x.id === id);
+  if(found) applyScenario(found.scenario);
+}
+function deleteScenarioById(id){
+  const list = JSON.parse(localStorage.getItem(SAVE_LIST_KEY) || '[]').filter(x => x.id !== id);
+  localStorage.setItem(SAVE_LIST_KEY, JSON.stringify(list));
+  renderSavedScenarios();
+}
+function clearSavedScenarios(){
+  localStorage.removeItem(SAVE_LIST_KEY);
+  renderSavedScenarios();
+}
+function renderSavedScenarios(){
+  const list = JSON.parse(localStorage.getItem(SAVE_LIST_KEY) || '[]');
+  const box = el('savedScenarioList');
+  if(!box) return;
+  if(!list.length){ box.innerHTML = ''; return; }
+  box.innerHTML = list.map(item => `<div class="saved-card"><div class="saved-title">${item.name}</div><div class="saved-meta">Profit / order: ${item.profitPerOrder}
+Net margin: ${item.netMargin}</div><div class="saved-actions"><button class="btn-ghost" onclick="loadScenarioById(${item.id})">Load</button><button class="btn-ghost" onclick="deleteScenarioById(${item.id})">Delete</button></div></div>`).join('');
+}
+function setupTabs(){
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      el('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+}
+function update(){
+  el('priceLiftVal').textContent = '+' + parseVal('priceLift') + '%';
+  el('adCutVal').textContent = '-' + parseVal('adCut') + '%';
+  el('returnCutVal').textContent = '-' + parseVal('returnCut') + '%';
+
+  const price = parseVal('price');
+  const cogs = parseVal('cogs');
+  const shipping = parseVal('shipping');
+  const adCost = parseVal('adCost');
+  const platformFeePct = parseVal('platformFee');
+  const returnRatePct = parseVal('returnRate');
+  const packaging = parseVal('packaging');
+  const miscVar = parseVal('miscVar');
+  const repeatRate = parseVal('repeatRate');
+  const revenueTarget = getRevenueTarget();
+  const discountPct = parseVal('discountPct');
+  const bundleUnits = Math.max(1, parseVal('bundleUnits'));
+  const clicks = parseVal('clicks');
+  const convRate = parseVal('convRate');
+  const upsellTakeRate = parseVal('upsellTakeRate');
+  const upsellValue = parseVal('upsellValue');
+  const upsellCost = parseVal('upsellCost');
+  const fixedOverhead = parseVal('fixedOverhead');
+  const targetNetProfit = parseVal('targetNetProfit');
+  const inventoryBuffer = parseVal('inventoryBuffer');
+  const paidShare = parseVal('paidShare');
+  const marketplaceShare = parseVal('marketplaceShare');
+  const ownedShare = parseVal('ownedShare');
+  const organicShare = parseVal('organicShare');
+  const marketplaceFeeExtra = parseVal('marketplaceFeeExtra');
+  const ownedChannelCpa = parseVal('ownedChannelCpa');
+
+  const platformFeeCost = price * platformFeePct / 100;
+  const returnCost = price * returnRatePct / 100;
+  const nonAdVariable = cogs + shipping + packaging + miscVar + platformFeeCost + returnCost;
+  const totalCost = nonAdVariable + adCost;
+  const profit = price - totalCost;
+  const margin = price > 0 ? (profit / price) * 100 : 0;
+  const contribution = price - nonAdVariable;
+  const maxCPA = Math.max(0, contribution);
+  const breakEvenRoas = maxCPA > 0 ? price / maxCPA : Infinity;
+  const grade = gradeMargin(margin);
+
+  el('profitPerOrder').textContent = fmtMoney(profit);
+  el('profitPerOrder').className = 'bp-val ' + (profit > 0 ? (margin >= 15 ? 'good-col' : 'warn-col') : 'bad-col');
+  el('profitSub').textContent = `${fmtPct(margin)} net margin · ${fmtMoney(totalCost)} total cost per order · ${fmtMoney(price)} selling price`;
+  el('bigProfit').className = 'big-profit ' + (profit <= 0 ? 'bad' : margin < 15 ? 'warn' : 'good');
+  el('netMargin').textContent = fmtPct(margin);
+  el('netMargin').className = 'stat-v ' + grade.cls;
+  el('marginGrade').textContent = grade.label;
+  el('breakEvenRoas').textContent = isFinite(breakEvenRoas) ? fmtNum(breakEvenRoas) + 'x' : '∞';
+  el('maxCpa').textContent = fmtMoney(maxCPA);
+  el('contributionMargin').textContent = fmtMoney(contribution);
+
+  const leakItems = [
+    {name:'Ad cost', value:adCost, color:'var(--accent)'},
+    {name:'COGS', value:cogs, color:'var(--green)'},
+    {name:'Shipping', value:shipping, color:'var(--blue)'},
+    {name:'Fees', value:platformFeeCost, color:'#7a3a9a'},
+    {name:'Returns', value:returnCost, color:'var(--red)'},
+    {name:'Packaging', value:packaging, color:'#b88a00'},
+    {name:'Other', value:miscVar, color:'#506090'}
+  ].sort((a,b)=>b.value-a.value);
+  const biggest = leakItems[0];
+  const biggestPct = price > 0 ? (biggest.value / price) * 100 : 0;
+  const leakBox = el('profitLeakBox');
+  if(profit <= 0){
+    leakBox.className = 'callout bad';
+    leakBox.textContent = `You are currently losing money. Your biggest leak is ${biggest.name}, eating ${fmtPct(biggestPct)} of every sale.`;
+  } else if(margin < 15){
+    leakBox.className = 'callout warn';
+    leakBox.textContent = `Your margins are thin. ${biggest.name} is your biggest leak at ${fmtPct(biggestPct)} of revenue. This is the first cost to attack.`;
+  } else {
+    leakBox.className = 'callout good';
+    leakBox.textContent = `You are profitable, but ${biggest.name} is still your biggest leak at ${fmtPct(biggestPct)} of revenue. Optimizing it raises profit fastest.`;
+  }
+  renderVerdict(profit, margin, biggest, maxCPA, breakEvenRoas, returnRatePct, adCost, price);
+  renderQuickFix(profit, margin, biggest, maxCPA, breakEvenRoas);
+  renderImpact(price, cogs, shipping, adCost, platformFeePct, returnRatePct, packaging, miscVar);
+  renderOfferStrategy(price, totalCost, bundleUnits, discountPct);
+  renderTrafficPlanner(profit, clicks, convRate);
+  renderPricingLadder(price, profit, margin, upsellTakeRate, upsellValue, upsellCost);
+  renderScale(profit, margin, price);
+  renderCostBars(leakItems, totalCost);
+  renderAdvanced(profit, revenueTarget, returnCost, price, repeatRate, bundleUnits, contribution, fixedOverhead, targetNetProfit, inventoryBuffer);
+  renderChannelMix(price, cogs, shipping, packaging, miscVar, platformFeePct, returnRatePct, adCost, paidShare, marketplaceShare, ownedShare, organicShare, marketplaceFeeExtra, ownedChannelCpa);
+  renderSavedScenarios();
+  renderSummaryPreview();
+}
+function renderVerdict(profit, margin, biggest, maxCPA, breakEvenRoas, returnRatePct, adCost, price){
+  let body = '';
+  if(profit <= 0){
+    body = `Right now this offer is not safe to scale. You are losing ${fmtMoney(Math.abs(profit))} per order, so every extra sale makes the hole deeper until price, CPA, or cost structure improves.`;
+  } else if(margin < 15){
+    body = `This store can sell, but the economics are fragile. You are profitable at ${fmtPct(margin)}, yet one rough week in ads or returns could wipe out most of the gain.`;
+  } else if(margin < 30){
+    body = `You have a workable offer with room to grow. The numbers are healthy enough to scale carefully, but tightening ${biggest.name.toLowerCase()} should come before aggressive spend.`;
+  } else {
+    body = `This setup is strong. You have the kind of margin that gives you room to test creatives, absorb volatility, and still keep meaningful profit.`;
+  }
+  el('verdictBody').textContent = body;
+
+  const badges = [];
+  badges.push({label: margin >= 30 ? 'Healthy margin' : margin >= 15 ? 'Thin margin' : 'Low margin risk', cls: margin >= 30 ? 'good' : margin >= 15 ? 'warn' : 'bad'});
+  badges.push({label: returnRatePct >= 8 ? 'Returns too high' : returnRatePct >= 4 ? 'Returns watch' : 'Returns controlled', cls: returnRatePct >= 8 ? 'bad' : returnRatePct >= 4 ? 'warn' : 'good'});
+  const adPct = price > 0 ? adCost / price * 100 : 0;
+  badges.push({label: adPct > 35 ? 'Ads too heavy' : adPct > 22 ? 'Ads moderate' : 'Ads efficient', cls: adPct > 35 ? 'bad' : adPct > 22 ? 'warn' : 'good'});
+  badges.push({label: isFinite(breakEvenRoas) && breakEvenRoas <= 1.6 ? 'Easy ROAS target' : isFinite(breakEvenRoas) && breakEvenRoas <= 2.5 ? 'ROAS needs care' : 'Hard ROAS target', cls: !isFinite(breakEvenRoas) || breakEvenRoas > 2.5 ? 'bad' : breakEvenRoas > 1.6 ? 'warn' : 'good'});
+  badges.push({label: `Largest leak: ${biggest.name}`, cls:'neutral'});
+  el('warningBadges').innerHTML = badges.map(b => `<span class="warn-badge ${b.cls}">${b.label}</span>`).join('');
+}
+
+function renderQuickFix(profit, margin, biggest, maxCPA, breakEvenRoas){
+  let msg = '';
+  if(profit <= 0){
+    msg = `Your store is underwater right now. Stop scaling paid traffic first.\n\nFocus: lower ${biggest.name.toLowerCase()} or raise price.\nSafe max CPA right now: ${fmtMoney(maxCPA)}.\nBreak-even ROAS needed: ${isFinite(breakEvenRoas)?fmtNum(breakEvenRoas)+'x':'∞'}.`;
+  } else if(margin < 15){
+    msg = `You are profitable, but too thin to scale comfortably.\n\nBest move: attack ${biggest.name.toLowerCase()} first, then test a modest price increase.\nYour current margin: ${fmtPct(margin)}.`;
+  } else {
+    msg = `Your numbers are healthy enough to optimize, not panic.\n\nBest move: improve ${biggest.name.toLowerCase()} while protecting conversion. Small wins here scale cleanly.`;
+  }
+  el('quickFixBox').textContent = msg;
+}
+function renderImpact(price, cogs, shipping, adCost, platformFeePct, returnRatePct, packaging, miscVar){
+  const priceLiftPct = parseVal('priceLift');
+  const adCutPct = parseVal('adCut');
+  const returnCutPct = parseVal('returnCut');
+  const newPrice = price * (1 + priceLiftPct / 100);
+  const newAd = Math.max(0, adCost * (1 - adCutPct / 100));
+  const newReturnRate = Math.max(0, returnRatePct - returnCutPct);
+  const feeCost = newPrice * platformFeePct / 100;
+  const returnCost = newPrice * newReturnRate / 100;
+  const total = cogs + shipping + packaging + miscVar + feeCost + returnCost + newAd;
+  const profit = newPrice - total;
+  const margin = newPrice > 0 ? (profit / newPrice) * 100 : 0;
+  el('impactPrice').textContent = fmtMoney(newPrice);
+  el('impactProfit').textContent = fmtMoney(profit);
+  el('impactProfit').className = 'mini-v ' + (profit > 0 ? (margin >= 15 ? 'good-col' : 'warn-col') : 'bad-col');
+  el('impactMargin').textContent = fmtPct(margin);
+  el('impactMargin').className = 'mini-v ' + (margin >= 30 ? 'good-col' : margin >= 15 ? 'warn-col' : 'bad-col');
+}
+function renderOfferStrategy(price, totalCost, bundleUnits, discountPct){
+  const discountedPrice = price * (1 - discountPct / 100);
+  const discountProfit = discountedPrice - totalCost;
+  const bundleRevenue = price * bundleUnits;
+  const bundleCost = totalCost * bundleUnits;
+  const bundleProfit = bundleRevenue - bundleCost;
+  el('discountProfit').textContent = fmtMoney(discountProfit);
+  el('discountProfit').className = 'mini-v ' + (discountProfit > 0 ? 'good-col' : 'bad-col');
+  el('bundleProfit').textContent = fmtMoney(bundleProfit);
+  el('bundleProfit').className = 'mini-v ' + (bundleProfit > 0 ? 'good-col' : 'bad-col');
+}
+function renderTrafficPlanner(profit, clicks, convRate){
+  const expectedOrders = clicks * (convRate / 100);
+  const expectedProfit = expectedOrders * profit;
+  el('expectedOrders').textContent = fmtNum(expectedOrders);
+  el('expectedProfit').textContent = fmtMoney(expectedProfit);
+  el('expectedProfit').className = 'mini-v ' + (expectedProfit > 0 ? 'good-col' : 'bad-col');
+}
+function renderPricingLadder(price, profit, margin, upsellTakeRate, upsellValue, upsellCost){
+  const expectedUpsellRevenue = (upsellTakeRate / 100) * upsellValue;
+  const expectedUpsellCost = (upsellTakeRate / 100) * upsellCost;
+  const blendedProfitPerOrder = profit + expectedUpsellRevenue - expectedUpsellCost;
+  const blendedAov = price + expectedUpsellRevenue;
+  const blendedMargin = blendedAov > 0 ? (blendedProfitPerOrder / blendedAov) * 100 : 0;
+  el('upsellProfitPerOrder').textContent = fmtMoney(expectedUpsellRevenue - expectedUpsellCost);
+  el('upsellProfitPerOrder').className = 'mini-v ' + ((expectedUpsellRevenue - expectedUpsellCost) >= 0 ? 'good-col' : 'bad-col');
+  el('blendedAov').textContent = fmtMoney(blendedAov);
+  el('blendedMargin').textContent = fmtPct(blendedMargin);
+  el('blendedMargin').className = 'mini-v ' + (blendedMargin >= Math.max(20, margin) ? 'good-col' : blendedMargin >= 15 ? 'warn-col' : 'bad-col');
+}
+function renderScale(profit, margin, price){
+  const orders = [10,100,1000];
+  el('scaleGrid').innerHTML = orders.map(q => `<div class="mini-card"><div class="mini-k">${q.toLocaleString()} orders</div><div class="mini-v ${profit > 0 ? (margin >= 15 ? 'good-col' : 'warn-col') : 'bad-col'}">${fmtMoney(profit*q)}</div><div class="mini-note">${fmtMoney(price*q)} revenue · ${fmtPct(margin)} margin held constant</div></div>`).join('');
+}
+function renderCostBars(items, totalCost){
+  el('costBars').innerHTML = items.map(item => { const pct = totalCost > 0 ? (item.value / totalCost) * 100 : 0; return `<div class="bar-row"><div class="bar-name">${item.name}</div><div class="bar-track"><div class="bar-fill" style="width:${Math.max(0,Math.min(100,pct))}%;background:${item.color}"></div></div><div class="bar-val">${fmtPct(pct)}</div></div>`; }).join('');
+}
+function renderAdvanced(profit, revenueTarget, returnCost, price, repeatRate, bundleUnits, contribution, fixedOverhead, targetNetProfit, inventoryBuffer){
+  const ordersFor10k = profit > 0 ? Math.ceil(10000 / profit) : Infinity;
+  const monthlyOrders = price > 0 ? revenueTarget / price : 0;
+  const monthlyProfit = monthlyOrders * profit;
+  const breakEvenRevenue = contribution > 0 ? Math.ceil(fixedOverhead / contribution) * price : Infinity;
+  const ltv = price * (1 + repeatRate / 100);
+  const confidence = Math.max(0, Math.min(100, 55 + (profit > 0 ? 15 : -20) + (repeatRate * .6) + (parseVal('returnRate') < 5 ? 8 : -5) + (parseVal('adCost') <= parseVal('price') * .25 ? 8 : -8)));
+  let confidenceLabel = 'Unstable';
+  let confidenceNote = 'Too many weak points are stacked against the margin.';
+  if(confidence >= 75){ confidenceLabel = 'Strong'; confidenceNote = 'This setup looks much safer to scale.'; }
+  else if(confidence >= 55){ confidenceLabel = 'Moderate'; confidenceNote = 'Promising, but one or two changes would help.'; }
+  const ordersForTargetNet = profit > 0 ? Math.ceil((targetNetProfit + fixedOverhead) / profit) : Infinity;
+  const revenueForTargetNet = isFinite(ordersForTargetNet) ? ordersForTargetNet * price : Infinity;
+  const cashBufferTarget = fixedOverhead * (1 + inventoryBuffer / 100);
+  const targetCpa20 = Math.max(0, price - (parseVal('cogs') + parseVal('shipping') + parseVal('packaging') + parseVal('miscVar') + (price * parseVal('platformFee')/100) + (price * parseVal('returnRate')/100) + price * .20));
+  el('ordersFor10k').textContent = isFinite(ordersFor10k) ? fmtNum(ordersFor10k) : 'Impossible';
+  el('monthlyProfitTarget').textContent = fmtMoney(monthlyProfit);
+  el('monthlyProfitTarget').className = 'mini-v ' + (monthlyProfit > 0 ? 'good-col' : 'bad-col');
+  el('breakEvenRevenue').textContent = isFinite(breakEvenRevenue) ? fmtMoney(breakEvenRevenue) : 'Impossible';
+  el('returnsLoss').textContent = fmtMoney(returnCost);
+  el('ltvVal').textContent = fmtMoney(ltv);
+  el('bundleAov').textContent = fmtMoney(price * bundleUnits);
+  el('confidenceVal').textContent = fmtNum(confidence) + '/100';
+  el('confidenceVal').className = 'mini-v ' + (confidence >= 75 ? 'good-col' : confidence >= 55 ? 'warn-col' : 'bad-col');
+  el('confidenceNote').textContent = confidenceLabel + ' · ' + confidenceNote;
+  el('targetCpa20').textContent = fmtMoney(targetCpa20);
+  el('ordersForTargetNet').textContent = isFinite(ordersForTargetNet) ? fmtNum(ordersForTargetNet) : 'Impossible';
+  el('revenueForTargetNet').textContent = isFinite(revenueForTargetNet) ? fmtMoney(revenueForTargetNet) : 'Impossible';
+  el('cashBufferTarget').textContent = fmtMoney(cashBufferTarget);
+  el('scalePlannerNote').textContent = isFinite(revenueForTargetNet) ? 'To clear ' + fmtMoney(targetNetProfit) + ' after ' + fmtMoney(fixedOverhead) + ' in monthly overhead, this model needs about ' + fmtMoney(revenueForTargetNet) + ' in sales.' : 'With the current unit economics, the target is not reachable until profit per order improves.';
+}
+function renderChannelMix(price, cogs, shipping, packaging, miscVar, platformFeePct, returnRatePct, adCost, paidShare, marketplaceShare, ownedShare, organicShare, marketplaceFeeExtra, ownedChannelCpa){
+  const totalShare = paidShare + marketplaceShare + ownedShare + organicShare || 1;
+  const normPaid = paidShare / totalShare;
+  const normMarket = marketplaceShare / totalShare;
+  const normOwned = ownedShare / totalShare;
+  const normOrganic = organicShare / totalShare;
+  const blendedCpa = (normPaid * adCost) + (normMarket * (adCost * 0.55)) + (normOwned * ownedChannelCpa) + (normOrganic * (adCost * 0.18));
+  const effectiveFeePct = platformFeePct + (normMarket * marketplaceFeeExtra);
+  const feeCost = price * effectiveFeePct / 100;
+  const returnCost = price * returnRatePct / 100;
+  const blendedProfit = price - (cogs + shipping + packaging + miscVar + feeCost + returnCost + blendedCpa);
+  const blendedMargin = price > 0 ? (blendedProfit / price) * 100 : 0;
+  let health='Fragile';
+  let note='Your mix leans too hard on expensive acquisition or fee-heavy channels.';
+  if(blendedMargin >= 28){ health='Strong'; note='Your mix gives you room to scale without choking the margin.'; }
+  else if(blendedMargin >= 15){ health='Manageable'; note='The mix works, but paid share should be watched closely.'; }
+  el('blendedChannelCpa').textContent = fmtMoney(blendedCpa);
+  el('blendedChannelMargin').textContent = fmtPct(blendedMargin);
+  el('blendedChannelMargin').className = 'mini-v ' + (blendedMargin >= 28 ? 'good-col' : blendedMargin >= 15 ? 'warn-col' : 'bad-col');
+  el('channelHealth').textContent = health;
+  el('channelHealth').className = 'mini-v ' + (blendedMargin >= 28 ? 'good-col' : blendedMargin >= 15 ? 'warn-col' : 'bad-col');
+  el('channelHealthNote').textContent = note;
+}
+function buildSummaryText(){
+  return [
+    'Ecom Profit Analyzer Summary',
+    `Preset: ${PRESETS[currentPreset].label}`,
+    `Selling Price: ${el('price').value}`,
+    `COGS: ${el('cogs').value}`,
+    `Shipping: ${el('shipping').value}`,
+    `Ad Cost per Sale: ${el('adCost').value}`,
+    `Fees: ${el('platformFee').value}%`,
+    `Returns: ${el('returnRate').value}%`,
+    `Packaging: ${el('packaging').value}`,
+    `Other Variable Cost: ${el('miscVar').value}`,
+    `Repeat Purchase Rate: ${el('repeatRate').value}%`,
+    `Profit per Order: ${el('profitPerOrder').textContent}`,
+    `Net Margin: ${el('netMargin').textContent}`,
+    `Break-even ROAS: ${el('breakEvenRoas').textContent}`,
+    `Max CPA: ${el('maxCpa').textContent}`,
+    `Verdict: ${el('verdictBody').textContent}`,
+    `Break-even Revenue Target: ${el('breakEvenRevenue').textContent}`,
+    `Orders Needed for $10k Profit: ${el('ordersFor10k').textContent}`,
+    `Monthly Profit at Target Revenue: ${el('monthlyProfitTarget').textContent}`,
+    `Confidence Meter: ${el('confidenceVal').textContent}`,
+    `Target CPA for 20% Margin: ${el('targetCpa20').textContent}`,
+    `Revenue Needed for Target Net Profit: ${el('revenueForTargetNet').textContent}`,
+    `Blended Channel Margin: ${el('blendedChannelMargin').textContent}`
+  ].join('\n');
+}
+function renderSummaryPreview(){ el('summaryPreview').textContent = buildSummaryText(); }
+function copySummary(){ navigator.clipboard.writeText(buildSummaryText()).then(()=>{},()=>{}); }
+document.querySelectorAll('input').forEach(input => input.addEventListener('input', () => { if(input.id !== 'revenueInput') update(); }));
+initTheme();
+setupTabs();
+renderPresets();
+applyPreset('dropshipping');
+formatRevenueInput(el('revenueInput'));
+loadScenario();
+renderSavedScenarios();
+update();
+</script>
+</body>
+</html>
