@@ -33,23 +33,165 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--serif);font-size:16px;line-height:1.7;min-height:100vh;transition:background .25s,color .25s}
 html,body{overflow-x:hidden}
 
-/* ── NAV ── */
-nav{position:sticky;top:0;z-index:1000;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:.55rem 1.1rem}
-.nav-inner{max-width:1220px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.nav-brand{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted);text-decoration:none;white-space:nowrap}
-.nav-brand span{color:var(--accent)}
-.pro-badge{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;background:var(--accent);color:#fff;padding:2px 7px;border-radius:20px;vertical-align:middle;margin-left:4px}
-.nav-tabs{display:flex;gap:3px;overflow-x:auto;scrollbar-width:none}
-.nav-tabs::-webkit-scrollbar{display:none}
-.nav-tab{font-family:var(--mono);font-size:11px;letter-spacing:.05em;padding:5px 11px;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap}
-.nav-tab:hover{color:var(--accent)}
-.nav-tab.active{background:var(--accent-bg);color:var(--accent);border-color:var(--accent)}
-.nav-right{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
-.nav-action{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);border:1px solid var(--border2);border-radius:999px;padding:6px 11px;background:var(--surface);cursor:pointer;white-space:nowrap;transition:all .15s}
-.nav-action:hover{border-color:var(--accent);color:var(--accent)}
-.nav-action.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-.nav-action.primary:hover{background:var(--accent2)}
+/* ── NAV (STAGNANT - SCROLLS AWAY) ── */
+nav {
+    position: relative;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0 1.1rem;
+}
 
+.nav-inner {
+    max-width: 1220px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 44px; /* Slimmer header */
+}
+
+.nav-brand {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .08em;
+    color: var(--muted);
+    text-decoration: none;
+    white-space: nowrap;
+    flex: 1; /* Pushes the pill to the exact center */
+}
+
+.nav-brand span { color: var(--accent); }
+
+.pro-badge {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: #fff;
+    padding: 2px 7px;
+    border-radius: 20px;
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: .6rem;
+    flex: 1; /* Matches nav-brand to keep pill perfectly centered */
+}
+
+/* ── BASE STATE (Sitting perfectly flat in the header) ── */
+.nav-tabs {
+    position: relative;
+    display: flex;
+    gap: 4px;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    z-index: 300;
+    transition: all 0.2s ease;
+}
+
+.nav-tab {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .05em;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-tab:hover { color: var(--accent); background: var(--bg2); }
+.nav-tab.active { background: var(--accent-bg); color: var(--accent) !important; }
+
+/* ── FLOATING STATE (Detaches when scrolled) ── */
+.nav-tabs.floating {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 8px;
+    border-radius: 999px;
+    border: 1px solid var(--border2);
+    box-shadow: var(--shadow2);
+    gap: 6px;
+}
+
+/* Ecom specific theme targets */
+html[data-theme="light"] .nav-tabs.floating { background: rgba(255, 255, 255, 0.85); }
+html[data-theme="dark"] .nav-tabs.floating { background: rgba(27, 22, 18, 0.85); }
+
+.nav-tabs.floating .nav-tab {
+    padding: 10px 20px;
+    border-radius: 999px;
+}
+
+.nav-tabs.floating .nav-tab.active {
+    background: var(--accent) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(216, 120, 63, 0.2);
+}
+
+/* ── BUTTONS (Inside right-nav) ── */
+.nav-action {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .06em;
+    color: var(--muted);
+    border: 1px solid var(--border2);
+    border-radius: 999px;
+    padding: 6px 11px;
+    background: var(--surface);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all .15s ease;
+}
+
+.nav-action:hover { border-color: var(--accent); color: var(--accent); }
+.nav-action.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.nav-action.primary:hover { background: var(--accent2); }
+
+/* ── NEW: FLOATING DARK MODE BUTTON ── */
+.floating-theme-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--border2);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    box-shadow: var(--shadow2);
+    transition: all 0.2s ease;
+}
+
+.floating-theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Mobile scrolling fix for floating pill */
+@media (max-width: 760px) {
+    .nav-tabs.floating { width: 90%; overflow-x: auto; justify-content: flex-start; scrollbar-width: none; }
+    .nav-tabs.floating::-webkit-scrollbar { display: none; }
+}
+@media print {
+    .floating-theme-btn { display: none !important; }
+}
 /* ── PAGES ── */
 .page{display:none}.page.active{display:block}
 .wrap{max-width:1220px;margin:0 auto;padding:2.5rem 1.25rem 5rem}
@@ -316,9 +458,10 @@ html[data-theme='dark'] input,html[data-theme='dark'] select{color:var(--text)}
 </head>
 <body>
 
-<nav>
+<nav id="mainNav">
   <div class="nav-inner">
     <a class="nav-brand" href="#" onclick="return false;"><span>Kat</span>Tools <span class="pro-badge">Pro</span></a>
+    
     <div class="nav-tabs" id="navTabs">
       <button class="nav-tab active" onclick="showPage('calculator')">Calculator</button>
       <button class="nav-tab" onclick="showPage('scenarios')">Scenarios</button>
@@ -327,15 +470,16 @@ html[data-theme='dark'] input,html[data-theme='dark'] select{color:var(--text)}
       <button class="nav-tab" onclick="showPage('charts')">Charts</button>
       <button class="nav-tab" onclick="showPage('tips')">Tips</button>
     </div>
+
     <div class="nav-right">
       <button class="nav-action" onclick="saveScenario()">Save</button>
       <button class="nav-action" onclick="window.print()">Print</button>
-      <button class="nav-action" id="themeToggle" onclick="toggleTheme()">Dark mode</button>
       <button class="nav-action primary" onclick="copySummary()">Copy</button>
-    </div>
+      </div>
   </div>
 </nav>
 
+<button class="floating-theme-btn" onclick="toggleTheme()" id="themeToggle">Dark mode</button>
 <!-- ══════════════════ CALCULATOR PAGE -->
 <div class="page active" id="page-calculator">
 <div class="wrap">
@@ -1552,6 +1696,18 @@ function buildSummaryText(){
 }
 function renderSummaryPreview(){const e=el('summaryPreview');if(e)e.textContent=buildSummaryText();}
 function copySummary(){navigator.clipboard.writeText(buildSummaryText()).then(()=>{},()=>{});}
+
+ // ══════════════════════════════════════════════════
+// DETACHING NAVIGATION
+// ══════════════════════════════════════════════════
+window.addEventListener('scroll', () => {
+    const tabs = document.getElementById('navTabs');
+    if (window.scrollY > 40) {
+        tabs.classList.add('floating');
+    } else {
+        tabs.classList.remove('floating');
+    }
+}); 
 
 // ══════════════════════════════════════════════════
 // INIT
